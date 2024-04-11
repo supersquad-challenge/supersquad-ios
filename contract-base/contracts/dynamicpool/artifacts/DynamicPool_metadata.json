@@ -1,0 +1,636 @@
+{
+	"compiler": {
+		"version": "0.8.24+commit.e11b9ed9"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"internalType": "address payable",
+						"name": "_owner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_factory",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "_form",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_idx",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "From",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "User",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "Deposit",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "Result",
+						"type": "bool"
+					}
+				],
+				"name": "DepositMoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "Pool",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "User",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "Deposit",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "Result",
+						"type": "bool"
+					}
+				],
+				"name": "DepositReturned",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "From",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "To",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "Amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "Result",
+						"type": "bool"
+					}
+				],
+				"name": "Transfered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "Pool",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "User",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "Deposit",
+						"type": "uint256"
+					}
+				],
+				"name": "UserAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "Pool",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "User",
+						"type": "address"
+					}
+				],
+				"name": "UserDeleted",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_deposit",
+						"type": "uint256"
+					}
+				],
+				"name": "addUser",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "addr",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "deposit",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Struct.User",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					}
+				],
+				"name": "deleteUser",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "addr",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "deposit",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Struct.User[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "factory",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAllUsers",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "addr",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "deposit",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Struct.User[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getFactory",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getForm",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getIndex",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getOwner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					}
+				],
+				"name": "getUser",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "addr",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "deposit",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Struct.User",
+						"name": "",
+						"type": "tuple"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_deposit",
+						"type": "uint256"
+					}
+				],
+				"name": "paybackDeposit",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "requestReversePool",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transferTo",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_deposit",
+						"type": "uint256"
+					}
+				],
+				"name": "withdrawDeposit",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"addUser(address,uint256)": {
+					"params": {
+						"_user": "@param _deposit userList에 User(address, uint256) 추가, 추가된 User 정보(address, uint256) 반환"
+					},
+					"returns": {
+						"_0": "User"
+					}
+				},
+				"deleteUser(address)": {
+					"returns": {
+						"_0": "userList"
+					}
+				},
+				"getUser(address)": {
+					"params": {
+						"_user": "; address를 파라미터로 받아 해당 user의 address, deposit, userList의 Index를 반환 만일, user가 userList에 존재하지 않을 경우 아래 값 반환. { address: address(0),  deposit: 0, index: 0 }"
+					}
+				},
+				"paybackDeposit(address,uint256)": {
+					"params": {
+						"_user": "@param _deposit getUser()를 통해 파라미터로 받은 _user의 deposit을 받아옴 해당 user의 주소로 인자로 받은 _deposit만큼 전송 성공 시 성공 이벤트 발생 실패 시 실패 이벤트 발생 사용 여부를 몰라 일단 deposit 검사 X"
+					}
+				},
+				"withdrawDeposit(address,uint256)": {
+					"params": {
+						"_user": "@param _deposit 파라미터로 받은 user address에 매핑된 deposit을 owner로 전송 성공할 경우 userList에 잔여 deposit을 반영 후 성공 이벤트 발생 실패할 경우 실패 이벤트 발생"
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"deleteUser(address)": {
+					"notice": "userList에 추가된 User(address, uint256) 제거, 제거된 userList 반환 파라미터로 받은 user address가 존재하지 않거나, 파라미터로 받은 user address에 매핑된 deposit이 0이 아닐 경우 revert 삭제 후 이벤트 발생"
+				},
+				"factory()": {
+					"notice": "DynamicPoolFactory Contract 주소 "
+				},
+				"getAllUsers()": {
+					"notice": "현재 Challenge에 참여한 전체 userList 반환"
+				},
+				"name()": {
+					"notice": "Challenge 명 "
+				},
+				"owner()": {
+					"notice": "DynamicPoolFactory Contract 배포한 주소 "
+				},
+				"requestReversePool()": {
+					"notice": "현재 Contract의 Opposite Contract를 반환 DynamicPoolFactory Contract의 getReversePool 메소드에 대해 call() 호출 call()이 성공 여부와 반환 값을 (bool, bytes) 형식으로 반환. 성공 시 해당 bytes를 address type으로 decoding하여 반환"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/dynamicpool/DynamicPool.sol": "DynamicPool"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/dynamicpool/DynamicPool.sol": {
+			"keccak256": "0x3e1ab7f1c1addbdde560e3947783e789f5b0c73f2f3556ce4ef0ce09754e0ab5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ff63124d9b671c84dc4f49e7a831b74c1b58618845103588cae0a2f4f56d208c",
+				"dweb:/ipfs/QmPU92Ua4nfX6Nr4PqJQPNLe3ynA9Mmk9qJ2C6Qr4gFhq6"
+			]
+		},
+		"contracts/dynamicpool/IDynamicPool.sol": {
+			"keccak256": "0xf776d973054c5937d958098a678779574881a33f28228b45e69f0f136b99a465",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5532cb9a6240d7695a183352c0ec7ac060a9bdad2698377ce26446d3ad55534d",
+				"dweb:/ipfs/QmeXL7EGVtKJ7ZZCyWbH95Ep3DqAdvTeTXViTEZYA4tUqU"
+			]
+		},
+		"contracts/dynamicpool/factory/DynamicPoolFactory.sol": {
+			"keccak256": "0xb8c032124813fe927d2200f71dc9e3ce8c07a0fca2dee3cc59f0eca3e23664b9",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0d50ef499a4f7711ff0fe21e01f29c28f6e4473ec2338a043e4caf3d3e11ad05",
+				"dweb:/ipfs/Qmb6vWT6qoZbPeWQHKuG6m3Twfzy9tu7ZAuHivTsYeew6J"
+			]
+		},
+		"contracts/dynamicpool/factory/IDynamicPoolFactory.sol": {
+			"keccak256": "0x10635445c23f3979bca868f1f99ec404e20f4806d7aa48c50b5780acedaf4c40",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://13c1cd7d9d2f68639506251a451c222f1dc680e9256583f9dee05059d0fd95bb",
+				"dweb:/ipfs/QmYan19LQMWwo6VNgxA77wqVYnUjFeKatkdmjRBdQxQTVi"
+			]
+		},
+		"contracts/utils/Context.sol": {
+			"keccak256": "0x2e58388f6c307fe7dd9ace55bd2031b463a3f93d8d67a558a6eb9524497e7f16",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f2645ab8cd21030ad9bca3a42b0828e21f80c67a8b11984906e283f561be562d",
+				"dweb:/ipfs/Qmddbgf9VGNABeEo6cv5SdN3Y9325oLmP3wj3iLYrsnjv1"
+			]
+		},
+		"contracts/utils/Struct.sol": {
+			"keccak256": "0x31a9d6747206deed82c785e7d9e7cf0d99a921fd5cdfdfe53f7a529dd5dae26f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f2d1f7f0557e226f37461194fb51c411520fa96b47e3fbc24d18e103e180cb09",
+				"dweb:/ipfs/QmUY2VeGmnVdTfk3pu4HvhYBwcZ3GSmHr6k376t3nENNXr"
+			]
+		}
+	},
+	"version": 1
+}
